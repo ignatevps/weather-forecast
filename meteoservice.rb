@@ -2,7 +2,6 @@
 
 # data from https://legacy.meteoservice.ru
 
-# библиотека которая отправляет запросы на сайты
 require 'net/http'
 require 'rexml/document'
 
@@ -19,10 +18,8 @@ CITIES = {
   137 => 'Петрозаводск'
 }.invert.freeze
 
-# Сделаем массив из наваний городов, взяв ключи массива CITIES
 city_names = CITIES.keys
 
-# Спрашиваем у пользователя, какой город по порядку ему нужен
 puts 'Погоду для какого города Вы хотите узнать?'
 city_names.each_with_index { |name, index| puts "#{index + 1}: #{name}" }
 city_index = gets.to_i
@@ -31,7 +28,6 @@ unless city_index.between?(1, city_names.size)
   puts "Введите число от 1 до #{city_names.size}"
 end
 
-# Когда, наконец, получим нужый индекс, достаем city_id
 city_id = CITIES[city_names[city_index - 1]]
 
 CLOUDINESS = %w[Ясно Малооблачно Облачно Пасмурно].freeze
